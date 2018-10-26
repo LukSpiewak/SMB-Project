@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".first.FirstExerciseMain" />
-        <activity android:name=".first.ListActivity" />
+        <activity android:name=".first.list.ListActivity" />
         <activity android:name=".first.options.OptionsActivity"></activity>
     </application>
 

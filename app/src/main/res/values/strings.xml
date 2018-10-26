@@ -11,6 +11,7 @@
     <string name="options_save">Zapisz</string>
     <string name="options_size_label">Rozmiar</string>
     <string name="options_color_label">Kolor</string>
+    <string name="list_add_new_button">Dodaj</string>
 
     <string-array name="options_spinner">
         <item>Czerwony</item>

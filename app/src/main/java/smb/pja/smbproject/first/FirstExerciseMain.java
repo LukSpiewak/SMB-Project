@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import smb.pja.smbproject.R;
+import smb.pja.smbproject.first.list.ListActivity;
 import smb.pja.smbproject.first.options.OptionsActivity;
 
 public class FirstExerciseMain extends AppCompatActivity {
@@ -32,7 +33,8 @@ public class FirstExerciseMain extends AppCompatActivity {
     }
 
     private void changeViewToList() {
-//        Intent intent = new Intent(this)
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
     }
 
     private void changeViewToOptions() {
