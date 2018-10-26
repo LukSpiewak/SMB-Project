@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">SMB Project</string>
+    <string name="exercise5_button_label">Ćwiczenie 5</string>
+    <string name="exercise4_button_label">Ćwiczenie 4</string>
+    <string name="exercise3_button_label">Ćwiczenie 3</string>
+    <string name="exercise2_button_label">Ćwiczenie 2</string>
+    <string name="exercise1_button_label">Ćwiczenie 1</string>
+    <string name="choice_text_view">Wybierz ćwiczenie</string>
+    <string name="list_first_exercise_button">Lista</string>
+    <string name="options_first_exercise_button">Opcje</string>
+    <string name="options_save">Zapisz</string>
+    <string name="options_size_label">Rozmiar</string>
+    <string name="options_color_label">Kolor</string>
+
+    <string-array name="options_spinner">
+        <item>Czerwony</item>
+        <item>Zielony</item>
+        <item>Czarny</item>
+        <item>Niebieski</item>
+    </string-array>
+</resources>
