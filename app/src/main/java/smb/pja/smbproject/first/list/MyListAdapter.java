@@ -1,6 +1,5 @@
 package smb.pja.smbproject.first.list;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,7 +43,7 @@ class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
         return items.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
 
         private TextView name;
         private TextView price;
@@ -53,6 +52,7 @@ class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnLongClickListener(this);
             name = itemView.findViewById(R.id.list_row_name_textView);
             price = itemView.findViewById(R.id.list_row_price_textView);
             amount = itemView.findViewById(R.id.list_row_amount_textView);
@@ -60,8 +60,9 @@ class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
         }
 
         @Override
-        public void onClick(View v) {
-
+        public boolean onLongClick(View v) {
+            System.out.println("long click");
+            return true;
         }
     }
 }

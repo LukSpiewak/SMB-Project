@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".first.FirstExerciseMain" />
         <activity android:name=".first.list.ListActivity" />
-        <activity android:name=".first.options.OptionsActivity"></activity>
+        <activity android:name=".first.options.OptionsActivity" />
+        <activity android:name=".first.list.AddElementActivity"></activity>
     </application>
 
 </manifest>

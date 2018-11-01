@@ -1,5 +1,6 @@
 package smb.pja.smbproject.first.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,5 +36,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     public void addNewElement(View view) {
+        Intent intent = new Intent(this, AddElementActivity.class);
+        startActivity(intent);
     }
 }

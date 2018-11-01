@@ -12,6 +12,9 @@
     <string name="options_size_label">Rozmiar</string>
     <string name="options_color_label">Kolor</string>
     <string name="list_add_new_button">Dodaj</string>
+    <string name="add_element_amount_label">Ilość</string>
+    <string name="add_element_price_label">Cena</string>
+    <string name="add_element_name_label">Nazwa</string>
 
     <string-array name="options_spinner">
         <item>Czerwony</item>
