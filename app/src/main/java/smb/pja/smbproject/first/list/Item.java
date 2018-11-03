@@ -1,19 +1,36 @@
 package smb.pja.smbproject.first.list;
 
-import android.icu.util.CurrencyAmount;
+import java.io.Serializable;
 
-public class Item {
+public class Item implements Serializable {
 
+    private Integer id;
     private String productName;
     private Float price;
     private Integer amount;
-    private boolean isPay;
+    private boolean isBought;
 
-    public Item(String productName, Float price, Integer amount, boolean isPay) {
+    public Item(String productName, Float price, Integer amount, boolean isBought) {
         this.productName = productName;
         this.price = price;
         this.amount = amount;
-        this.isPay = isPay;
+        this.isBought = isBought;
+    }
+
+    public Item(Integer id, String productName, Float price, Integer amount, boolean isBought) {
+        this.id = id;
+        this.productName = productName;
+        this.price = price;
+        this.amount = amount;
+        this.isBought = isBought;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getProductName() {
@@ -40,11 +57,11 @@ public class Item {
         this.amount = amount;
     }
 
-    public boolean isPay() {
-        return isPay;
+    public boolean isBought() {
+        return isBought;
     }
 
-    public void setPay(boolean pay) {
-        isPay = pay;
+    public void setBuy(boolean bought) {
+        isBought = bought;
     }
 }

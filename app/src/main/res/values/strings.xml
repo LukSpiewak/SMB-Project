@@ -15,6 +15,8 @@
     <string name="add_element_amount_label">Ilość</string>
     <string name="add_element_price_label">Cena</string>
     <string name="add_element_name_label">Nazwa</string>
+    <string name="add_element_save_button">Zapisz</string>
+    <string name="add_element_remove_button">Usuń</string>
 
     <string-array name="options_spinner">
         <item>Czerwony</item>
