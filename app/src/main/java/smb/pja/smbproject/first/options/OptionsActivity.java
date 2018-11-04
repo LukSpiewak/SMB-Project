@@ -41,16 +41,6 @@ public class OptionsActivity extends AppCompatActivity {
         savePreferences();
     }
 
-    public void onClick(View view) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(sp.getFloat("options_size", 5f)).append(",");
-        sb.append(sp.getInt("options_color", 0));
-
-        Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG)
-                .show();
-    }
-
-
     private void setSharedPreferences() {
         sp = this.getPreferences(Context.MODE_PRIVATE);
         fillSavePreferences();
@@ -60,16 +50,20 @@ public class OptionsActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sp.edit();
         editor.putFloat("options_size", Float.valueOf(sizeEditText.getText().toString()));
         editor.putInt("options_color", colorSpinner.getSelectedItemPosition());
-        editor.commit();
+        editor.apply();
     }
 
     private void fillSavePreferences() {
         if (sp.contains("options_size")) {
-            sizeEditText.setText(String.valueOf(sp.getFloat("options_size", 5f)));
+            Float size = sp.getFloat("options_size", 5f);
+            sizeEditText.setText(String.valueOf(size));
+            textView.setTextSize(size);
         }
 
         if (sp.contains("options_color")) {
-            colorSpinner.setSelection(sp.getInt("options_color", 0));
+            int color = sp.getInt("options_color", 0);
+            colorSpinner.setSelection(color);
+            textView.setTextColor(color);
         }
 
     }

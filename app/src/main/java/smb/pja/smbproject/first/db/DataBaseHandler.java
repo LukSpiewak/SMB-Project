@@ -50,7 +50,6 @@ public final class DataBaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getWritableDatabase();
         db.insert(ElementList.TABLE_NAME, null, values);
-        db.close();
     }
 
     public Optional<List<Item>> getAllItems() {
@@ -58,7 +57,6 @@ public final class DataBaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        db.close();
         if (cursor.moveToFirst()) {
             List<Item> results = new ArrayList<>();
              do {
@@ -85,13 +83,11 @@ public final class DataBaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getWritableDatabase();
         db.update(ElementList.TABLE_NAME, cv, ElementList.ID_COLUMN + " = " + currentItem.getId(), null);
-        db.close();
     }
 
     public void remove(Integer id) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(ElementList.TABLE_NAME, ElementList.ID_COLUMN + " = " + id, null);
-        db.close();
     }
 
     public void updateCheckbox(Integer idItem, boolean isChecked) {
@@ -100,6 +96,5 @@ public final class DataBaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getWritableDatabase();
         db.update(ElementList.TABLE_NAME, cv, ElementList.ID_COLUMN + " = " + idItem, null);
-        db.close();
     }
 }
