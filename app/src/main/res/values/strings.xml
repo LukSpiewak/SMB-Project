@@ -17,11 +17,16 @@
     <string name="add_element_name_label">Nazwa</string>
     <string name="add_element_save_button">Zapisz</string>
     <string name="add_element_remove_button">Usuń</string>
+    <string name="options_object_label">OBJECT</string>
+    <string name="options_size_edit_text_hint">Podaj rozmiar</string>
 
     <string-array name="options_spinner">
-        <item>Czerwony</item>
-        <item>Zielony</item>
-        <item>Czarny</item>
-        <item>Niebieski</item>
+        <item>CZERWONY</item>
+        <item>CZARNY</item>
+        <item>SZARY</item>
+        <item>BIAŁY</item>
+        <item>ZIELONY</item>
+        <item>NIEBIESKI</item>
+        <item>ŻÓŁTY</item>
     </string-array>
 </resources>
