@@ -10,51 +10,55 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import smb.pja.smbproject.first.db.table.ElementList;
 import smb.pja.smbproject.first.list.Item;
 
 public final class DataBaseHandler extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
     private static final String DB_NAME = "CW_1";
-    private SQLiteDatabase db;
 
     public DataBaseHandler(Context context) {
         super(context, DB_NAME, null, VERSION);
-        db = getReadableDatabase();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String elementsTable = "" +
-                "CREATE TABLE elementsList (" +
-                "id INTEGER PRIMARY KEY, " +
-                "name TEXT, " +
-                "price NUMERIC, " +
-                "amount INTEGER, " +
-                "bought INTEGER" +
+                "CREATE TABLE " + ElementList.TABLE_NAME + " (" +
+                ElementList.ID_COLUMN + " INTEGER PRIMARY KEY, " +
+                ElementList.NAME_COLUMN + " TEXT, " +
+                ElementList.PRICE_COLUMN + " NUMERIC, " +
+                ElementList.AMOUNT_COLUMN + " INTEGER, " +
+                ElementList.BOUGHT_COLUMN + " INTEGER" +
                 ")";
         db.execSQL(elementsTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + ElementList.TABLE_NAME);
+        onCreate(db);
     }
 
     public void addRow(Item item) {
         ContentValues values = new ContentValues();
-        values.put("name", item.getProductName());
-        values.put("price", item.getPrice());
-        values.put("amount", item.getAmount());
-        values.put("bought", item.isBought());
-        db.insert("elementsList", null, values);
+        values.put(ElementList.NAME_COLUMN, item.getProductName());
+        values.put(ElementList.PRICE_COLUMN, item.getPrice());
+        values.put(ElementList.AMOUNT_COLUMN, item.getAmount());
+        values.put(ElementList.BOUGHT_COLUMN, item.isBought());
 
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(ElementList.TABLE_NAME, null, values);
+        db.close();
     }
 
     public Optional<List<Item>> getAllItems() {
-        String query = "SELECT * FROM elementsList";
+        String query = "SELECT * FROM " + ElementList.TABLE_NAME;
 
+        SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
+        db.close();
         if (cursor.moveToFirst()) {
             List<Item> results = new ArrayList<>();
              do {
@@ -74,20 +78,28 @@ public final class DataBaseHandler extends SQLiteOpenHelper {
 
     public void update(Item currentItem) {
         ContentValues cv = new ContentValues();
-        cv.put("name", currentItem.getProductName());
-        cv.put("price", currentItem.getPrice());
-        cv.put("amount", currentItem.getAmount());
-        cv.put("bought", currentItem.isBought() ? 1 : 0);
-        db.update("elementsList", cv, "id = " + currentItem.getId(), null);
+        cv.put(ElementList.NAME_COLUMN, currentItem.getProductName());
+        cv.put(ElementList.PRICE_COLUMN, currentItem.getPrice());
+        cv.put(ElementList.AMOUNT_COLUMN, currentItem.getAmount());
+        cv.put(ElementList.BOUGHT_COLUMN, currentItem.isBought() ? 1 : 0);
+
+        SQLiteDatabase db = getWritableDatabase();
+        db.update(ElementList.TABLE_NAME, cv, ElementList.ID_COLUMN + " = " + currentItem.getId(), null);
+        db.close();
     }
 
     public void remove(Integer id) {
-        db.delete("elementsList", "id = " + id, null);
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(ElementList.TABLE_NAME, ElementList.ID_COLUMN + " = " + id, null);
+        db.close();
     }
 
     public void updateCheckbox(Integer idItem, boolean isChecked) {
         ContentValues cv = new ContentValues();
-        cv.put("bought", isChecked ? 1 : 0);
-        db.update("elementsList", cv, "id = " + idItem, null);
+        cv.put(ElementList.BOUGHT_COLUMN, isChecked ? 1 : 0);
+
+        SQLiteDatabase db = getWritableDatabase();
+        db.update(ElementList.TABLE_NAME, cv, ElementList.ID_COLUMN + " = " + idItem, null);
+        db.close();
     }
 }
