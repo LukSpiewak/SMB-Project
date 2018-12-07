@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="smb.pja.smbproject">
+
+    <uses-permission android:name="smb.pja.notificationapp.permissions.NOTIFICATION_PERMISSION"/>
 
     <application
         android:allowBackup="true"
@@ -8,7 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ChoiseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +23,9 @@
         <activity android:name=".first.FirstExerciseMain" />
         <activity android:name=".first.list.ListActivity" />
         <activity android:name=".first.options.OptionsActivity" />
-        <activity android:name=".first.list.AddElementActivity"></activity>
+        <activity android:name=".first.list.AddElementActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

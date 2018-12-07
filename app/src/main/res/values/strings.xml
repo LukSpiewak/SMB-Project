@@ -19,6 +19,10 @@
     <string name="add_element_remove_button">Usuń</string>
     <string name="options_object_label">OBJECT</string>
     <string name="options_size_edit_text_hint">Podaj rozmiar</string>
+    <string name="produkt">Produkt</string>
+    <string name="cena">Cena</string>
+    <string name="ilo">Ilość</string>
+    <string name="kupione">Kupione?</string>
 
     <string-array name="options_spinner">
         <item>CZERWONY</item>

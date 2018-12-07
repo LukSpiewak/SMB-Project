@@ -41,7 +41,7 @@ public final class DataBaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addRow(Item item) {
+    public long addRow(Item item) {
         ContentValues values = new ContentValues();
         values.put(ElementList.NAME_COLUMN, item.getProductName());
         values.put(ElementList.PRICE_COLUMN, item.getPrice());
@@ -49,7 +49,7 @@ public final class DataBaseHandler extends SQLiteOpenHelper {
         values.put(ElementList.BOUGHT_COLUMN, item.isBought());
 
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(ElementList.TABLE_NAME, null, values);
+        return db.insert(ElementList.TABLE_NAME, null, values);
     }
 
     public Optional<List<Item>> getAllItems() {
@@ -72,6 +72,24 @@ public final class DataBaseHandler extends SQLiteOpenHelper {
         }
 
         return Optional.empty();
+    }
+
+    public Item findItemById(Integer i) {
+        String query = "SELECT * FROM " + ElementList.TABLE_NAME +
+                " WHERE " + ElementList.ID_COLUMN + " = " + i;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            Integer id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            Float price = cursor.getFloat(2);
+            Integer amount = cursor.getInt(3);
+            Boolean bought = cursor.getInt(4) == 1;
+
+            return new Item(id, name, price, amount, bought);
+        }
+        return null;
     }
 
     public void update(Item currentItem) {

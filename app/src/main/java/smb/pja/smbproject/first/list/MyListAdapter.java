@@ -40,7 +40,7 @@ class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
         viewHolder.price.setText(select.getPrice().toString());
         viewHolder.amount.setText(select.getAmount().toString());
         viewHolder.state.setChecked(select.isBought());
-        }
+    }
 
     @Override
     public int getItemCount() {

@@ -1,5 +1,6 @@
 package smb.pja.smbproject.first.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -35,14 +36,21 @@ public class AddElementActivity extends AppCompatActivity {
 
         Optional.ofNullable(getIntent())
                 .map(b -> b.getSerializableExtra("old"))
-                .ifPresent(this::fillItemFields);
+                .map(i -> currentItem = (Item) i)
+                .ifPresent(this::updateCurrentItem);
+
+        Optional.ofNullable(getIntent())
+                .map(Intent::getExtras)
+                .map(b -> b.get("id"))
+                .map(id -> (Integer) id)
+                .map(db::findItemById)
+                .ifPresent(this::updateCurrentItem);
     }
 
-    private void fillItemFields(Object o) {
-        currentItem = (Item) o;
-        name.setText(currentItem.getProductName());
-        price.setText(currentItem.getPrice().toString());
-        amount.setText(currentItem.getAmount().toString());
+    private void updateCurrentItem(Item i) {
+        name.setText(i.getProductName());
+        price.setText(i.getPrice().toString());
+        amount.setText(i.getAmount().toString());
 
         removeButton.setEnabled(true);
     }
@@ -52,8 +60,24 @@ public class AddElementActivity extends AppCompatActivity {
             updateItem();
         } else {
             saveNewItem();
+            sendBroadcastOnNewProduct();
         }
         super.finish();
+    }
+
+    private void sendBroadcastOnNewProduct() {
+        Intent intent = new Intent();
+        intent.setAction("smb.pja.ADDING_NEW_PRODUCT");
+
+        String productName = name.getText().toString();
+        Float price = Float.valueOf(this.price.getText().toString());
+        Integer amount = Integer.valueOf(this.amount.getText().toString());
+        intent.putExtra("productName", productName);
+        intent.putExtra("price", price);
+        intent.putExtra("amount", amount);
+        intent.putExtra("id", currentItem.getId());
+
+        sendBroadcast(intent, "smb.pja.notificationapp.permissions.NOTIFICATION_PERMISSION");
     }
 
     private void updateItem() {
@@ -71,7 +95,9 @@ public class AddElementActivity extends AppCompatActivity {
         String productName = name.getText().toString();
         Float price = Float.valueOf(this.price.getText().toString());
         Integer amount = Integer.valueOf(this.amount.getText().toString());
-        db.addRow(new Item(productName, price, amount, false));
+        currentItem = new Item(productName, price, amount, false);
+        long id = db.addRow(new Item(productName, price, amount, false));
+        currentItem.setId(Integer.valueOf(String.valueOf(id)));
     }
 
     public void removeThis(View view) {
