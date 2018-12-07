@@ -23,6 +23,11 @@
     <string name="cena">Cena</string>
     <string name="ilo">Ilość</string>
     <string name="kupione">Kupione?</string>
+    <string name="sign_up_login">Login</string>
+    <string name="sign_up_password">Hasło</string>
+    <string name="sign_up_add_account">Zarejestruj</string>
+    <string name="zaloguj_si">Zaloguj się</string>
+    <string name="sign_in_button">Zaloguj się</string>
 
     <string-array name="options_spinner">
         <item>CZERWONY</item>

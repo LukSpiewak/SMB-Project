@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="smb.pja.smbproject">
 
-    <uses-permission android:name="smb.pja.notificationapp.permissions.NOTIFICATION_PERMISSION"/>
+    <uses-permission android:name="smb.pja.notificationapp.permissions.NOTIFICATION_PERMISSION" />
 
     <application
         android:allowBackup="true"
@@ -23,9 +23,11 @@
         <activity android:name=".first.FirstExerciseMain" />
         <activity android:name=".first.list.ListActivity" />
         <activity android:name=".first.options.OptionsActivity" />
-        <activity android:name=".first.list.AddElementActivity"
-            android:exported="true">
-        </activity>
+        <activity
+            android:name=".first.list.AddElementActivity"
+            android:exported="true" />
+        <activity android:name=".first.SignUpActivity" />
+        <activity android:name=".first.SignInActivity"></activity>
     </application>
 
 </manifest>

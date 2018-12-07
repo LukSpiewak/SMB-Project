@@ -33,7 +33,7 @@ public class FirstExerciseMain extends AppCompatActivity {
     }
 
     private void changeViewToList() {
-        Intent intent = new Intent(this, ListActivity.class);
+        Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
     }
 
