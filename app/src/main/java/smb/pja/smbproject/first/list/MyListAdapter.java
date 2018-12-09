@@ -13,6 +13,7 @@ import java.util.List;
 
 import smb.pja.smbproject.R;
 import smb.pja.smbproject.first.db.DataBaseHandler;
+import smb.pja.smbproject.first.firebase.FirebaseDatabaseUtils;
 
 class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
 
@@ -87,7 +88,10 @@ class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
 
         private void setOnClickListener() {
             state.setOnClickListener(v -> {
-                db.updateCheckbox(idItem, state.isChecked());
+                Float pric = Float.valueOf(price.getText().toString());
+                Integer amo = Integer.valueOf(amount.getText().toString());
+                Item item = new Item(idItem, name.getText().toString(), pric, amo, state.isChecked());
+                FirebaseDatabaseUtils.createOrUpdateItem(item);
             });
         }
 

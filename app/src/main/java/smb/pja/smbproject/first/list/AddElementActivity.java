@@ -11,10 +11,9 @@ import java.util.Optional;
 
 import smb.pja.smbproject.R;
 import smb.pja.smbproject.first.db.DataBaseHandler;
+import smb.pja.smbproject.first.firebase.FirebaseDatabaseUtils;
 
 public class AddElementActivity extends AppCompatActivity {
-
-    private DataBaseHandler db;
 
     private EditText name;
     private EditText price;
@@ -26,7 +25,6 @@ public class AddElementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db = new DataBaseHandler(this);
         setContentView(R.layout.activity_add_element);
         name = findViewById(R.id.add_element_name_edit_text);
         price = findViewById(R.id.add_element_price_edit_text);
@@ -39,12 +37,12 @@ public class AddElementActivity extends AppCompatActivity {
                 .map(i -> currentItem = (Item) i)
                 .ifPresent(this::updateCurrentItem);
 
-        Optional.ofNullable(getIntent())
-                .map(Intent::getExtras)
-                .map(b -> b.get("id"))
-                .map(id -> (Integer) id)
-                .map(db::findItemById)
-                .ifPresent(this::updateCurrentItem);
+//        Optional.ofNullable(getIntent())
+//                .map(Intent::getExtras)
+//                .map(b -> b.get("id"))
+//                .map(id -> (Integer) id)
+//                .map(db::findItemById)
+//                .ifPresent(this::updateCurrentItem);
     }
 
     private void updateCurrentItem(Item i) {
@@ -82,7 +80,7 @@ public class AddElementActivity extends AppCompatActivity {
 
     private void updateItem() {
         updateCurrentItem();
-        db.update(currentItem);
+        FirebaseDatabaseUtils.createOrUpdateItem(currentItem);
     }
 
     private void updateCurrentItem() {
@@ -96,12 +94,11 @@ public class AddElementActivity extends AppCompatActivity {
         Float price = Float.valueOf(this.price.getText().toString());
         Integer amount = Integer.valueOf(this.amount.getText().toString());
         currentItem = new Item(productName, price, amount, false);
-        long id = db.addRow(new Item(productName, price, amount, false));
-        currentItem.setId(Integer.valueOf(String.valueOf(id)));
+        FirebaseDatabaseUtils.createOrUpdateItem(currentItem);
     }
 
     public void removeThis(View view) {
-        db.remove(currentItem.getId());
+        FirebaseDatabaseUtils.removeItem(currentItem.getId());
         super.finish();
     }
 }

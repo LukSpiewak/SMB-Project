@@ -8,21 +8,24 @@ public class Item implements Serializable {
     private String productName;
     private Float price;
     private Integer amount;
-    private boolean isBought;
+    private Boolean bought;
 
-    public Item(String productName, Float price, Integer amount, boolean isBought) {
+    public Item() {
+    }
+
+    public Item(String productName, Float price, Integer amount, Boolean bought) {
         this.productName = productName;
         this.price = price;
         this.amount = amount;
-        this.isBought = isBought;
+        this.bought = bought;
     }
 
-    public Item(Integer id, String productName, Float price, Integer amount, boolean isBought) {
+    public Item(Integer id, String productName, Float price, Integer amount, Boolean bought) {
         this.id = id;
         this.productName = productName;
         this.price = price;
         this.amount = amount;
-        this.isBought = isBought;
+        this.bought = bought;
     }
 
     public Integer getId() {
@@ -58,10 +61,10 @@ public class Item implements Serializable {
     }
 
     public boolean isBought() {
-        return isBought;
+        return bought;
     }
 
     public void setBuy(boolean bought) {
-        isBought = bought;
+        bought = bought;
     }
 }
