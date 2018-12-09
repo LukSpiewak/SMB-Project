@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import smb.pja.smbproject.R;
-import smb.pja.smbproject.first.list.ListActivity;
 import smb.pja.smbproject.first.options.OptionsActivity;
 
 public class FirstExerciseMain extends AppCompatActivity {
