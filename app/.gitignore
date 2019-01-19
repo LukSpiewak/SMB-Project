@@ -1,2 +1,3 @@
 /build
 *.json
+./src/relese/res/values/*.xml

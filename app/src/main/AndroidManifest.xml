@@ -4,8 +4,29 @@
     package="smb.pja.smbproject">
 
     <uses-permission android:name="smb.pja.notificationapp.permissions.NOTIFICATION_PERMISSION" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <permission
+        android:name="smb.pja.notificationapp.permissions.MAPS_RECIVE"
+        android:protectionLevel="signature" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.location.network" />
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="smb.pja.notificationapp.permissions.MAPS_RECIVE" />
+    <uses-permission android:name="com.google.andrioid.providers.gsf.permission.READ_GSERVICES" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +50,24 @@
             android:name=".first.list.AddElementActivity"
             android:exported="true" />
         <activity android:name=".first.SignUpActivity" />
-        <activity android:name=".first.SignInActivity"></activity>
+        <activity android:name=".first.SignInActivity" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <service android:name=".fourth.GeofenceTransitionsIntentService"/>
+
+        <activity
+            android:name=".fourth.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".fourth.list.ShopListActivity" />
+        <activity android:name=".fourth.list.AddShopActivity" />
+
     </application>
 
 </manifest>

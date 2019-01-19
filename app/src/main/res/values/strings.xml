@@ -38,4 +38,17 @@
         <item>NIEBIESKI</item>
         <item>ŻÓŁTY</item>
     </string-array>
+    <string name="title_activity_maps">Ulubione sklepy</string>
+    <string name="add_new_shop">Dodaj Sklep</string>
+    <string name="shop_list">Lista Sklepów</string>
+    <string name="shop_row_localization">Lokalizacja:</string>
+    <string name="shop_row_radius">Promień</string>
+    <string name="add_shop_description_label">Opis</string>
+    <string name="add_shop_radius_label">Promień</string>
+
+    <string name="hello_message">Jesteś w obszarze </string>
+    <string name="goodbye_message">Jesteś poza obszarem </string>
+    <string name="promo_message">Super promocja już dziś</string>
+
+
 </resources>
